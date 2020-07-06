@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gérer les lieux{% endblock %}
+
+{% block main %}
+
+    {%  for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert-{{ label }}">
+                {{ message }}
+            </div>
+        {%  endfor %}
+    {%  endfor %}
+
+
+    <div  style="text-align: center" class="alert alert-primary" role="alert">
+        <div style="text-align: center"><h3>Gérer les lieux</h3></div>
+    </div><br>
+
+    {# DEBUT BLOC DES FILTRES #}
+    <form method="post" action="{{ path('admin_lieu') }}" class="col-lg">
+        <div><h5>Filtrer les lieux</h5></div><br>
+        <div class="row">
+            <div class="col-2">
+                <label for="search_bar">Le nom contient : </label>
+            </div>
+
+            <div class="col-4">
+                <input type="search" id="search_bar" class="form-control" name="champ_recherche_lieu" aria-label="Search" placeholder="Rechercher un lieu">
+            </div>
+
+            <div class="col-4">
+                <!-- Bouton Rechercher-->
+                <button  type="submit" class="btn btn-success">Rechercher</button>
+            </div>
+
+            <div class="col-2"></div>
+        </div>
+    </form>
+    <br><br>
+
+    {# FIN BLOC DES FILTRES #}
+
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table table-bordered table-hover table-striped table-sm" style="overscroll-behavior:auto ">
+            <thead>
+            <tr class="stick">
+                <th class="stick">Lieu</th>
+                <th class="stick">Code Postal</th>
+                <th class="stick">Actions</th>
+            </tr>
+            </thead>
+            {% for lieu in lieux %}
+                <tr>
+                    <td>{{ lieu.nom }}</td>
+                    <td>{{ lieu.ville.codePostal }}</td>
+                    <td>
+                        <a href="{{path("admin_editLieu", {'id' : lieu.id})}}">Modifier</a>
+                        <a href="{{path("admin_supprimer_lieu", {'id' : lieu.id})}}">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div><br>
+    <button type="submit"  name="ajouter" class="btn btn-success"><a href="{{path("admin_ajoutLieu")}}">Ajouter</a></button>
+{% endblock %}

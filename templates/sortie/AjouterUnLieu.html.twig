@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% form_theme formAjoutLieu 'bootstrap_4_layout.html.twig' %}
+
+
+
+
+
+{% block main %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <h3>Ajouter un lieu</h3>
+                <hr>
+                {{ form_start(formAjoutLieu) }}
+                {{ form_row(formAjoutLieu.nom,{'label': 'Nom du lieu :'}) }}
+                {{ form_row(formAjoutLieu.ville, {'label': 'Selectionner la ville : '}) }}
+                {{ form_row(formAjoutLieu.rue, {'label': 'Rue : '}) }}
+                {{ form_row(formAjoutLieu.latitude, {'label': 'Latitude : '}) }}
+                {{ form_row(formAjoutLieu.longitude, {'label': 'Latitude : '}) }}
+                <button type="submit"  name="ajouter" class="btn btn-primary">Ajouter</button>
+                {{ form_end(formAjoutLieu) }}
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
+
+{% endblock %}

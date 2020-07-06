@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sortir{% endblock %}</title>
+    <link  rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+    <link rel="icon" href="{{ asset('img/enilogo.jpg') }}">
+    <script>
+        function darken() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+
+
+
+
+    {% block nav %}
+
+        {% if is_granted('ROLE_ADMIN') %}
+
+        <header>
+            <a class="site-title" href="{{ path("accueil") }}" title=" | Home">
+                <img style="border-radius: 12px" src="{{ asset('img/enilogo.jpg') }}" alt="logo"> Sortir.com
+            </a>
+
+            <div class="topnav">
+                <div class="topnav-right">
+                    <a href="{{ path("admin_lieu") }}" title="lieux">Lieux</a>
+                    <a href="{{ path("admin_site") }}" title="sites">Sites</a>
+                    <a href="{{ path("accueil") }}" title="accueil">Accueil</a>
+                    <a href="{{ path("mon_profil") }}" title="profil">Mon profil</a>
+                    <a href="{{ path("app_logout") }}" title="deconnexion">Se déconnecter</a>
+                    <a href="{{ path("admin_interface") }}" title="profil">Admin</a>
+                </div>
+            </div>
+        </header>
+    {% endif %}
+
+        {% if is_granted('ROLE_USER') %}
+
+
+            <header >
+                <a class="site-title" href="{{ path("accueil") }}" title="Bucket-List | Home">
+                    <img style="border-radius: 12px" src="{{ asset('img/enilogo.jpg') }}" alt="Bucket-List"> Sortir.com
+                </a>
+                <div>
+                    <div class="topnav">
+                        <div class="topnav-right">
+                            <a href="{{ path("accueil") }}" title="accueil">Accueil</a>
+                            <a href="{{ path("mon_profil") }}" title="profil">Mon profil</a>
+                            <a href="{{ path("app_logout") }}" title="deconnexion">Se déconnecter</a>
+                        </div>
+                    </div>
+                </div>
+          </header>
+      {% endif %}
+  {% endblock %}
+
+
+  <main>
+      {% block main %}{% endblock %}
+  </main>
+
+
+</div>
+{% block footer %}
+  <footer class="footer">
+      <div style="text-align: center"> © {{ "now"|date("Y") }} Sortir.com</div><br><br>
+      <div class="container">
+          <div class="row">
+              <div class="col-md-5">
+                  <h5><i class="fa fa-road"></i> SORTIR.COM</h5>
+                  <div class="row">
+                      <div class="col-6">
+                          <ul class="list-unstyled">
+                              <li><a href="https://www.eni-ecole.fr/" target="_blank">ENI Ecole informatique</a></li>
+                              <li><a href="#" target="_blank">Pourquoi sortir?</a></li>
+                              <li><a href="#">Tous les événements</a></li>
+                              <li><a href="#" target="_blank">Le comité de pilotage</a></li>
+                          </ul>
+                      </div>
+                      <div class="col-6">
+                          <ul class="list-unstyled">
+                              <li><a href="#">Les prochaines sorties</a></li>
+                              <li><a href="#">Les tarifs par sortie</a></li>
+                              <li><a href="#" target="_blank">Nos sites</a></li>
+                              <li><a href="#" >Qui sommes-nous?</a></li>
+                          </ul>
+                      </div>
+                  </div>
+                  <ul class="nav">
+                      <li class="nav-item"><a href="https://fr-fr.facebook.com/EniEcoleInformatique/"target="_blank" class="nav-link pl-0"><i class="fa fa-facebook fa-lg"></i></a></li>
+                      <li class="nav-item"><a href="https://twitter.com/eniecoleinforma?" target="_blank"class="nav-link"><i class="fa fa-twitter fa-lg"></i></a></li>
+                      <li class="nav-item"><a href="https://github.com/ " target="_blank" class="nav-link"><i class="fa fa-github fa-lg"></i></a></li>
+                      <li class="nav-item"><a href="#" target="_blank"class="nav-link"><i class="fa fa-instagram fa-lg"></i></a></li>
+                  </ul>
+                  <button onclick="darken()" class="btn btn-dark">Dark</button>
+                  <br>
+              </div>
+              <div class="col-md-2">
+                  <h5 class="text-md-right">Nous contacter</h5>
+                  <hr>
+              </div>
+              <div class="col-md-5">
+                  <form>
+                      <fieldset class="form-group">
+                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Entrer mail">
+                      </fieldset>
+                      <fieldset class="form-group">
+                          <textarea class="form-control" id="exampleMessage" placeholder=" Votre Message"></textarea>
+                      </fieldset>
+                      <fieldset class="form-group text-xs-right">
+                          <button type="submit" class="btn btn-secondary">Envoyer</button>
+                      </fieldset>
+                  </form>
+              </div>
+          </div>
+      </div>
+
+  </footer>
+{% endblock %}
+
+</body>
+</html>

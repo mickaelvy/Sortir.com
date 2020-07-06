@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+        <h2>Liste de tous les participants</h2>
+
+        {#DEBUT  AFFICHAGE MESSAGES FLASH#}
+        {% for label, messages in app.flashes(['danger', 'success']) %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {#FIN  AFFICHAGE MESSAGES FLASH#}
+        <a class="btn btn-primary" href="{{ path('admin_ajoutUtilisateur') }}">Ajouter un participant</a><br><br>
+        <table class="table table-condensed">
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Pseudo</th>
+                <th>Téléphone</th>
+                <th>Email</th>
+                <th>Site</th>
+                <th>Actions</th>
+            </tr>
+            {% for participant in tousLesParticipants %}
+                <tr>
+                    <td>{{ participant.nom }}</td>
+                    <td>{{ participant.prenom }}</td>
+                    <td>{{ participant.pseudo }}</td>
+                    <td>{{ participant.telephone }}</td>
+                    <td>{{ participant.mail }}</td>
+                    <td>{{ participant.site }}</td>
+                    <td>
+                        <a href="{{ path('admin_desactiverOuActiverUnParticipant', {id: participant.id}) }}">
+                        {{ participant.Actif ? 'Désactiver' : 'Activer' }}</a>
+                    {#    <a href="{{ path('admin_supprimerUtilisateur', {id: participant.id}) }}">Supprimer</a>#}
+                    </td>
+                </tr>
+            {% endfor %}
+
+        </table>
+
+{% endblock %}

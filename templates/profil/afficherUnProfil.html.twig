@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Afficher profil{% endblock %}
+
+{% block main %}
+    <div  class="container">
+        <div class="row">
+        <div class="col-sm-4">
+            <img src="{{ asset('images/' ~ participant.imageUrl) }}"  width="200" height="200"  alt="photo profile">
+        </div>
+        <div class="col-sm-4">
+        <h3>{{ participant.pseudo }}</h3><br>
+
+        <p><strong>Prénom : </strong>{{ participant.prenom }}</p>
+                <p><strong>Nom : </strong>{{ participant.nom }}</p>
+                <p><strong>Téléphone : </strong>{{ participant.telephone }}</p>
+                <p><strong>Email : </strong>{{ participant.mail }}</p>
+                <p><strong>Site de rattachement : </strong>{{ participant.site.nom }}</p>
+
+
+    <button type="submit" class="btn btn-outline-secondary"><a href="{{path("accueil")}}"> Retour </a></button>
+
+        </div>
+        <div class="col-sm-4"></div>
+        </div>
+    </div>
+    <p></p>
+
+{% endblock %}

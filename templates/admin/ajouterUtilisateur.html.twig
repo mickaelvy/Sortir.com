@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil!{% endblock %}
+
+{% form_theme utilisateurForm 'bootstrap_4_layout.html.twig' %}
+
+
+
+{% block main %}
+
+    {#DEBUT  AFFICHAGE MESSAGES FLASH#}
+    {% for label, messages in app.flashes(['danger', 'success']) %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {#FIN  AFFICHAGE MESSAGES FLASH#}
+
+    <div  class="container">
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8">
+
+                <div  style="text-align: center" class="alert alert-primary" role="alert">
+                    <h4 align="center">Ajout d'un nouveau utilisateur</h4>
+                </div><br>
+                {{ form_start(utilisateurForm) }}
+                {{ form_row(utilisateurForm.pseudo, { 'label': 'Pseudo :'}) }}
+                {{ form_row(utilisateurForm.prenom, { 'label': 'Prénom :' }) }}
+                {{ form_row(utilisateurForm.nom, { 'label': 'Nom :' }) }}
+                {{ form_row(utilisateurForm.telephone, { 'label': 'Téléphone :' }) }}
+                {{ form_row(utilisateurForm.mail, { 'label': 'Mail' }) }}
+                {{ form_row(utilisateurForm.site, { 'label': 'Site de rattachement :' }) }}
+                {{ form_row(utilisateurForm.passwword, { 'label': 'Mot de passe temporaire :' }) }}
+{#                {{ form_row(utilisateurForm.roles, { 'label': 'Attribuer un rôle :'}) }}#}
+                {{ form_row(utilisateurForm.administrateur, { 'label': ' Administrateur' }) }}
+                {{ form_row(utilisateurForm.actif, { 'label': 'Activer le compte' }) }}
+
+                {#{{ form_row(utilisateurForm.imageUrl, { 'label': 'Ajouter une photo :'}) }}#}
+
+                <button type="submit" class="btn btn-success" >Ajouter</button>
+                <button  type="button" class="btn btn-success"><a href="{{path("accueil")}}">Annuler</a></button>
+                {{form_end(utilisateurForm)}}
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+
+{% endblock %}

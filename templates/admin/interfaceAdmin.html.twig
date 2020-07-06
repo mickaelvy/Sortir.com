@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    <div style="text-align: center">
+        <h2>Interface d'administration</h2><br><br>
+        <a class="btn btn-primary btn-lg" href="{{ path('admin_listeUtilisateurs') }}">Liste des participants</a>
+        <a class="btn btn-primary btn-lg" href="{{ path('admin_ajoutUtilisateur') }}">Ajouter un participant</a>
+    </div>
+
+{% endblock %}

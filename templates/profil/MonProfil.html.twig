@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil!{% endblock %}
+
+{% form_theme profilForm 'bootstrap_4_layout.html.twig' %}
+
+{% block main %}
+    <div  class="container">
+
+            <div class="row">
+                        <div class="col-4">
+                            {% if participant.imageUrl != null %}
+                                <img src="{{ asset('images/' ~ participant.imageUrl) }}"  width="200" height="200"  alt="photo profile">
+                            {% else %}
+                                <img src="http://placehold.it/350x150"  width="200" height="200"  alt="photo profile">
+                            {% endif %}
+                        </div>
+                        <div class="col-4">
+                        {{ form_start(profilForm) }}
+                            {{ form_row(profilForm.pseudo, { 'label': 'Pseudo :'}) }}
+                            {{ form_row(profilForm.prenom, { 'label': 'Prénom :' }) }}
+                            {{ form_row(profilForm.nom, { 'label': 'Nom :' }) }}
+                            {{ form_row(profilForm.telephone, { 'label': 'Téléphone :' }) }}
+                            {{ form_row(profilForm.mail, { 'label': 'Mail' }) }}
+                            {{ form_row(profilForm.site, { 'label': 'Site de rattachement :'}) }}
+                            {{ form_row(profilForm.imageFile, { 'label': 'Photo de profil :'}) }}
+
+                        <a href="{{ path("password_change") }}" title="accueil"> <font color="#1e90ff">Changer mon mot de passe</font></a><br><br>
+                        <button type="submit" class="btn btn-success" >Enregistrer</button>
+                        <button  type="button" class="btn btn-success"><a href="{{path("accueil")}}">Annuler</a></button>
+
+                        {{form_end(profilForm)}}
+                        </div>
+                        <div class="col-4"></div>
+            </div>
+    </div>
+
+{% endblock %}

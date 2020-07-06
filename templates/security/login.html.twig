@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+
+
+{% block nav %}
+    <a class="site-title" href="#" title=" | Home">
+        <img style="border-radius: 12px" src="{{ asset('img/enilogo.jpg') }}" alt="">Sortir.com
+    </a>
+{% endblock %}
+
+
+{% block main %}
+
+    <h3>Connexion</h3>
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <form action="{{ path('app_login') }}" method="post">
+
+                <div class="from-group">
+                    <input  placeholder="Pseudo" required name="_username" type="text" class="form-control">
+                </div></br>
+
+
+                <div class="from-group">
+                    <input  placeholder="Mot de passe" required name="_password" type="password" class="form-control">
+                </div></br>
+
+
+
+                <div class="checkbox mb-3">
+                    <label for="remember_me">
+                        <input type="checkbox" name="_remember_me"  id="remember_me"> Se souvenir de moi
+                    </label>
+                </div></br>
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Connexion</button>
+                </div>
+
+
+            </form>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+{#<form  action="{{ path('app_login') }}" method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Connection</h1>
+    <label for="inputPseudo">Pseudo</label>
+    <input type="text" value="{{ last_username }}" name="pseudo" id="inputPseudo" class="form-control" required autofocus>
+    <label for="inputPassword">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    #}{#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    #}{#
+
+    <button class="btn btn-lg btn-primary" type="submit">
+        Se connecter
+    </button>
+</form>#}
+{% endblock %}
